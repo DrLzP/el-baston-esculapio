@@ -1,29 +1,41 @@
+'use client';
+
+import Link from "next/link";
+import { useState } from "react";
+
 export default function HomePage() {
+  const tabs = [
+    { label: "Chuletario", path: "/chuletario" },
+    { label: "Calculadoras", path: "/calculadoras" },
+    { label: "Consulta AP", path: "/primaria" },
+    { label: "Diagnóstico", path: "/diagnostico" },
+    { label: "Técnicas", path: "/tecnicas" },
+    { label: "Fármacos", path: "/farmacos" },
+    { label: "Perfusiones", path: "/perfusiones" },
+  ];
+
+  const [active, setActive] = useState("Chuletario");
+
   return (
-    <main className="p-10 min-h-screen bg-gray-100">
-      <div className="max-w-3xl mx-auto text-center">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          Bienvenido a El Bastón de Esculapio
-        </h1>
-        <p className="text-lg text-gray-600 mb-8">
-          Portal de referencia clínica con chuletas, calculadoras y algoritmos interactivos para urgencias y atención primaria.
-        </p>
+    <main className="min-h-screen bg-gray-100 py-10 px-4">
+      <div className="max-w-5xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-8">El Bastón de Esculapio</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <a href="/chuletario" className="bg-white p-6 rounded-2xl shadow hover:shadow-md transition">
-            <h2 className="text-xl font-semibold text-blue-700">Chuletario</h2>
-            <p className="text-sm text-gray-500 mt-2">Protocolos por patología</p>
-          </a>
+        <div className="flex flex-wrap justify-center gap-4 mb-10">
+          {tabs.map((tab) => (
+            <Link
+              key={tab.label}
+              href={tab.path}
+              className={\`px-4 py-2 rounded-full text-sm font-medium transition border border-blue-700 \${active === tab.label ? "bg-blue-700 text-white" : "text-blue-700 hover:bg-blue-100"}\`}
+              onClick={() => setActive(tab.label)}
+            >
+              {tab.label}
+            </Link>
+          ))}
+        </div>
 
-          <a href="/calculadoras" className="bg-white p-6 rounded-2xl shadow hover:shadow-md transition">
-            <h2 className="text-xl font-semibold text-green-700">Calculadoras</h2>
-            <p className="text-sm text-gray-500 mt-2">Escalas y scores médicos</p>
-          </a>
-
-          <a href="/primaria" className="bg-white p-6 rounded-2xl shadow hover:shadow-md transition">
-            <h2 className="text-xl font-semibold text-purple-700">Consulta AP</h2>
-            <p className="text-sm text-gray-500 mt-2">Algoritmos interactivos</p>
-          </a>
+        <div className="text-center text-gray-600">
+          <p className="text-lg">Selecciona una pestaña para acceder a herramientas clínicas, algoritmos y calculadoras.</p>
         </div>
       </div>
     </main>
