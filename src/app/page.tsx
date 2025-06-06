@@ -1,4 +1,3 @@
-// src/app/page.tsx
 export default function HomePage() {
   const secciones = [
     { nombre: "Chuletario", path: "/chuletario", color: "bg-blue-100", desc: "Protocolos urgentes" },
